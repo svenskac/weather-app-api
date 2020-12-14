@@ -1,0 +1,2 @@
+class WeatherRequestLog < ApplicationRecord
+end
