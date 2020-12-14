@@ -1,5 +1,5 @@
 module TemperatureState::Operation
-  class GetForNextDay < Trailblazer::Activity::Railway
+  class GetForNextDay < Trailblazer::Operation
     TEMPERATURE_STATES_PER_DAY = 8
     step :validate
     step :get_forecast

@@ -2,12 +2,20 @@ class WeatherController < ApplicationController
 
   def locations
     signal, (ctx, _) = TemperatureState::Operation::GetForFiveDays.(params: {location_id: params[:id], units: params[:units]})
-    render json: {temperature_states: ctx[:result_collection]}
+    if signal.success?
+      render json: {cod: 200, message: '', temperature_states: ctx[:result_collection]}
+      return
+    end
+    render json: {cod: 400, message: 'Operation failed.'}
   end
 
   def summary
     signal, (ctx, _) = TemperatureState::Operation::GetForNextDay.(params: {location_ids: params[:location_ids], units: params[:units]})
-    render json: {temperature_states: ctx[:result_collection]}
+    if signal.success?
+      render json: {cod: 200, message: '', temperature_states: ctx[:result_collection]}
+      return
+    end
+    render json: {cod: 400, message: 'Operation failed.'}
   end
 
   def api

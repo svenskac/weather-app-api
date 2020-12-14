@@ -1,5 +1,5 @@
 module TemperatureState::Operation
-  class GetForFiveDays < Trailblazer::Activity::Railway
+  class GetForFiveDays < Trailblazer::Operation
     TEMPERATURE_STATES_PER_FIVE_DAYS = 40
 
     step :validate
